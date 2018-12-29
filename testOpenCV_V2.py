@@ -4,7 +4,7 @@ from time import sleep
 
 cap = cv2.VideoCapture(0)
 fgbg = cv2.createBackgroundSubtractorMOG2()
-tempret, initframe = cap.read()
+_, initframe = cap.read()
 #sleep(1)
 calib = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2GRAY)
 prev_frame = cv2.cvtColor(initframe, cv2.COLOR_BGR2GRAY)
