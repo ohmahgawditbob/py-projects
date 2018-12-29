@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{795977bd-abfc-4dd2-9b0c-ef64fd63f605}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>testOpenCV_V2.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <InterpreterVersion />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="calibration.jpg" />
+    <Content Include="calibration_lit.jpg" />
+    <Content Include="skyrimSharks.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="alphabetical letter encoder.py" />
+    <Compile Include="digital-audio-sampler-master\mda.py" />
+    <Compile Include="digital-audio-sampler-master\primitives.py" />
+    <Compile Include="digital-audio-sampler-master\snd_io.py" />
+    <Compile Include="digital-audio-sampler-master\snd_utlis.py" />
+    <Compile Include="discord_bot_skeleton.py" />
+    <Compile Include="ftpserver.py" />
+    <Compile Include="gmodpianomidiconverter.py" />
+    <Compile Include="gmodpianomidiconverter_freepie.py" />
+    <Compile Include="kinetic_energy_calculator.py" />
+    <Compile Include="lighthouse_tracking.py" />
+    <Compile Include="pygametext.py" />
+    <Compile Include="serialtest.py" />
+    <Compile Include="testOpenCV.py" />
+    <Compile Include="testOpenCV_V2.py" />
+    <Compile Include="testOpenGL.py" />
+    <Compile Include="velocity_calc_from_kinetic_energy.py" />
+    <Compile Include="Voice Changer\audiotrainer.py" />
+    <Compile Include="Voice Changer\UI.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="digital-audio-sampler-master" />
+    <Folder Include="Voice Changer" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>
