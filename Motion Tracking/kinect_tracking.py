@@ -10,13 +10,17 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 _, initframe = cap.read()
-calibrate_bool = False  # Set to false if you would like to use regular adaptive background subtraction algorithms. WARNING: This is more unreliable
+calibrate_bool = True  # Set to false if you would like to use regular adaptive background subtraction algorithms. WARNING: This is more unreliable
 
 if calibrate_bool:  # Custom filter TBD
-    calib = cv2.cvtColor(initframe, cv2.COLOR_BGR2GRAY)  # Sets the calibration frame up to be used by the algorithm
+    #calib = cv2.cvtColor(initframe, cv2.COLOR_BGR2GRAY)  # Sets the calibration frame up to be used by the algorithm
+    calib = cv2.imread('Calibration Image Path', cv2.IMREAD_GRAYSCALE)  # Sets the calibration frame up to be used by the algorithm as a set background image
     while True:  # MAIN LOOP
         _, frame = cap.read()
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        fg = abs(gray - calib)
         cv2.imshow('Original', frame)
+        cv2.imshow('Foreground', fg)
         k = cv2.waitKey(30) & 0xff
         if k == 27:
             break 
@@ -31,8 +35,15 @@ else:
         _, contours,_ = cv2.findContours(mask, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
         if len(contours) > 0:
             hull = cv2.convexHull(contours[0],returnPoints = False)
-        cv2.drawContours(frame, contours, -1,(0,0,255), 2)
-
+        #cv2.drawContours(frame, contours, -1,(0,0,255), 2)
+        defects = cv2.convexityDefects(contours[0],hull)
+        for i in range(defects.shape[0]):
+            s,e,f,d = defects[i,0]
+            start = tuple(contours[0][s][0])
+            end = tuple(contours[0][e][0])
+            far = tuple(contours[0][f][0])
+            cv2.line(frame,start,end,[0,255,0],2)
+            cv2.circle(frame,far,5,[0,0,255],-1)
         cv2.imshow('Original', frame)
         cv2.imshow('Mask', mask)
         k = cv2.waitKey(30) & 0xff
