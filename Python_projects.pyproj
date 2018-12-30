@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{795977bd-abfc-4dd2-9b0c-ef64fd63f605}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>testOpenCV_V2.py</StartupFile>
+    <StartupFile>Motion Tracking\kinect_tracking.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -37,6 +37,12 @@
     <Compile Include="gmodpianomidiconverter_freepie.py" />
     <Compile Include="kinetic_energy_calculator.py" />
     <Compile Include="lighthouse_tracking.py" />
+    <Compile Include="Motion Tracking\aruco_test.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Motion Tracking\kinect_tracking.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pygametext.py" />
     <Compile Include="serialtest.py" />
     <Compile Include="testOpenCV.py" />
@@ -48,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="digital-audio-sampler-master" />
+    <Folder Include="Motion Tracking\" />
     <Folder Include="Voice Changer" />
   </ItemGroup>
   <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
