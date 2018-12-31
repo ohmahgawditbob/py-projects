@@ -10,20 +10,26 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 _, initframe = cap.read()
-calibrate_bool = True  # Set to false if you would like to use regular adaptive background subtraction algorithms. WARNING: This is more unreliable
+calibrate_bool = True  # Set to false if you would like to use regular adaptive background subtraction algorithms. WARNING: This is less reliable
+print("Starting...\n")
 
-if calibrate_bool:  # Custom filter TBD
+if calibrate_bool:
     #calib = cv2.cvtColor(initframe, cv2.COLOR_BGR2GRAY)  # Sets the calibration frame up to be used by the algorithm
-    calib = cv2.imread('Calibration Image Path', cv2.IMREAD_GRAYSCALE)  # Sets the calibration frame up to be used by the algorithm as a set background image
+    calib = cv2.medianBlur(cv2.imread(r'Path to Calibration Image', cv2.IMREAD_GRAYSCALE),3)  # Sets the calibration frame up to be used by the algorithm as a set background image
     while True:  # MAIN LOOP
         _, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        fg = abs(gray - calib)
+        fg = abs(cv2.medianBlur(gray, 3) - calib)  # Blurs calibration and frame image to smooth out most of the noise (We only need a rough outline).
+        _,mask = cv2.threshold(cv2.medianBlur(fg,5), 100, 255, cv2.THRESH_BINARY)
+        _, contours,_ = cv2.findContours(mask, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
+
+        cv2.drawContours(frame, contours, -1,(0,0,255), 2)
+
         cv2.imshow('Original', frame)
-        cv2.imshow('Foreground', fg)
+        cv2.imshow('Foreground', mask)
         k = cv2.waitKey(30) & 0xff
         if k == 27:
-            break 
+            break
 else:
     fgbg = cv2.createBackgroundSubtractorKNN(detectShadows=False, dist2Threshold=150)
     while True:
@@ -48,6 +54,10 @@ else:
         cv2.imshow('Mask', mask)
         k = cv2.waitKey(30) & 0xff
         if k == 27:
+            break
+        elif k == 96:
+            print("Calibration Image Saved")
+            cv2.imwrite('calibration.png', frame)
             break
 
 cap.release()

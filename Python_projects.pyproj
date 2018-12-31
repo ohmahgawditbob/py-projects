@@ -21,20 +21,12 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="calibration.jpg" />
-    <Content Include="calibration_lit.jpg" />
-    <Content Include="skyrimSharks.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="alphabetical letter encoder.py" />
     <Compile Include="digital-audio-sampler-master\mda.py" />
     <Compile Include="digital-audio-sampler-master\primitives.py" />
     <Compile Include="digital-audio-sampler-master\snd_io.py" />
     <Compile Include="digital-audio-sampler-master\snd_utlis.py" />
     <Compile Include="discord_bot_skeleton.py" />
-    <Compile Include="ftpserver.py" />
-    <Compile Include="gmodpianomidiconverter.py" />
-    <Compile Include="gmodpianomidiconverter_freepie.py" />
     <Compile Include="kinetic_energy_calculator.py" />
     <Compile Include="lighthouse_tracking.py" />
     <Compile Include="Motion Tracking\aruco_test.py">
@@ -43,11 +35,9 @@
     <Compile Include="Motion Tracking\kinect_tracking.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="pygametext.py" />
     <Compile Include="serialtest.py" />
     <Compile Include="testOpenCV.py" />
     <Compile Include="testOpenCV_V2.py" />
-    <Compile Include="testOpenGL.py" />
     <Compile Include="velocity_calc_from_kinetic_energy.py" />
     <Compile Include="Voice Changer\audiotrainer.py" />
     <Compile Include="Voice Changer\UI.py" />
